@@ -33,6 +33,12 @@ def main() -> None:
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         f.write(JOKE)
+    with open(path, encoding="utf-8") as f:
+        written = f.read()
+    if written != JOKE:
+        raise SystemExit(
+            "Write verification failed: entry.txt content does not match the joke."
+        )
 
 
 if __name__ == "__main__":
