@@ -39,6 +39,14 @@ def main() -> None:
         raise SystemExit(
             "Write verification failed: entry.txt content does not match the joke."
         )
+    expected_bytes = len(JOKE.encode("utf-8"))
+    actual_bytes = os.path.getsize(path)
+    if actual_bytes != expected_bytes:
+        raise SystemExit(
+            "Write verification failed: entry.txt is "
+            f"{actual_bytes} bytes on disk, expected {expected_bytes} bytes "
+            "(the UTF-8 byte length of the joke)."
+        )
 
 
 if __name__ == "__main__":
