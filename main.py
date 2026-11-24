@@ -47,6 +47,13 @@ def main() -> None:
             f"{actual_bytes} bytes on disk, expected {expected_bytes} bytes "
             "(the UTF-8 byte length of the joke)."
         )
+    with open(path, "rb") as f:
+        raw_bytes = f.read()
+    if raw_bytes != JOKE.encode("utf-8"):
+        raise SystemExit(
+            "Write verification failed: entry.txt raw bytes do not match "
+            "the UTF-8 encoding of the joke."
+        )
 
 
 if __name__ == "__main__":
